@@ -94,5 +94,7 @@ Compile with debug flags:
 # References
 [1] P Fränti, S Sieranoja, "How much can k-means be improved by using better initialization
 and repeats?", Pattern Recognition, 93, 95-112, 2019. https://doi.org/10.1016/j.patcog.2019.04.014
+
 [2] P. Fränti, "Efficiency of random swap clustering", Journal of Big Data, 5:13, 1-29, 2018. (pdf) JF=1 https://doi.org/10.1186/s40537-018-0122-y
+
 [3] P. Fränti, "Genetic algorithm with deterministic crossover for vector quantization", Pattern Recognition Letters, 21 (1), 61-68, 2000. (pdf) IF=1.03 https://doi.org/10.1016/S0167-8655(99)00133-6
