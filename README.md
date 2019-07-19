@@ -8,24 +8,28 @@ This package is also needed as a dependency to be able to build some of the proj
 
 # Compile and Run
 
-=======
-K-means
+## K-means
 
-Compile:
-make cbkm
+**Compile:**
+`make cbkm`
 
-Example with 15 clusters:
+**Example with 15 clusters:**
+```
 ./cbkm -O -S15 datasets/s1.txt output.txt
 ./cbkm -O -S15 datasets/s1.ts output.ts
+```
 
-Steinley initialization method, two repeats:
+**Steinley initialization method, two repeats:**
+```
 ./cbkm -I5 -O -R2 -S15 datasets/s1.txt output.txt
+```
 
-K-means++ initialization method, two repeats:
-./cbkm -I2 -O -R2 -S15 datasets/s1.txt output.txt
+**K-means++ initialization method, two repeats:**
+`./cbkm -I2 -O -R2 -S15 datasets/s1.txt output.txt`
 
 
-Run ./cbkm for help:
+**Run ./cbkm for help:**
+```
 CBKM	Version 0.65	4.4.2017
 Repeated K-means algorithm.
 Usage: CBKM [-option] <training set> [initial cb/pa] <result codebook>
@@ -60,50 +64,35 @@ For example: CBKM bridge initial tmp
   -Sn              = Number of clusters (1..5000, default=256)
   -Tn              = Iterations, 0=INF (0..50000000, default=0)
   -Zn              = Random seed (0=clock)  (0..2147483647, default=0)
+```
 
+## Random Swap
 
-===========
-Random Swap
+**Compile:**
+`make cbrs`
 
-If you use the Random Swap software for scientific work, please cite
-the following paper:
-P. Fränti, "Efficiency of random swap clustering", Journal of Big Data, 5:13, 1-29, 2018. (pdf) JF=1
+**Example with 15 clusters:**
+`./cbrs -O -S15 datasets/s1.txt output.txt`
 
-Compile:
-make cbrs
+Run `./cbrs`  for help
 
-Example with 15 clusters:
-./cbrs -O -S15 datasets/s1.txt output.txt
+## Genetic Algorithm
 
+**Compile:**
+`make cbga`
 
-Run ./cbrs  for help
+**Example with 15 clusters:**
+`./cbga -O -S15 datasets/s1.txt output.txt`
 
-=================
-Genetic Algorithm
+Run `./cbga` for help
 
-If you use the Genetic algorithm software for scientific work, please cite
-the following paper:
-P. Fränti, "Genetic algorithm with deterministic crossover for vector quantization", Pattern Recognition Letters, 21 (1), 61-68, 2000. (pdf) IF=1.03
-
-Compile:
-make cbga
-
-Example with 15 clusters:
-./cbga -O -S15 datasets/s1.txt output.txt
-
-Run ./cbga for help
-
-=====
-Debug
-
+**Debug**
 Compile with debug flags:
-make cbkm DEBUG=-g
-
-
+`make cbkm DEBUG=-g`
 
 
 # References
 [1] P Fränti, S Sieranoja, "How much can k-means be improved by using better initialization
 and repeats?", Pattern Recognition, 93, 95-112, 2019. https://doi.org/10.1016/j.patcog.2019.04.014
 [2] P. Fränti, "Efficiency of random swap clustering", Journal of Big Data, 5:13, 1-29, 2018. (pdf) JF=1 https://doi.org/10.1186/s40537-018-0122-y
-[3] P. Fränti,  J. Kivijärvi,  T. Kaukoranta,  O. Nevalainen, "Genetic algorithms for large scale clustering problems" The Computer Journal, Volume 40, Issue 9, 1997, Pages 547–554 https://doi.org/10.1093/comjnl/40.9.547
+[3] P. Fränti, "Genetic algorithm with deterministic crossover for vector quantization", Pattern Recognition Letters, 21 (1), 61-68, 2000. (pdf) IF=1.03 https://doi.org/10.1016/S0167-8655(99)00133-6
