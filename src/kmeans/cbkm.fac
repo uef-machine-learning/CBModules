@@ -1,0 +1,110 @@
+Fact( QuietLevel,
+      "Quiet level",
+      'Q',    1,  INT,    0,    0, 99,    2,    NO,
+      qi1, qi2, qi3, qi4, qi5, qi6, qi7, qi8, qi9, qi10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      NO )
+
+Fact( SavePartition,
+      "Save partition file",
+      'P',    0,  BOOL,    0,    0,   1,      NO,    NO,
+      sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(SavePartition))
+      
+Fact( OverWrite,
+      "Overwrite existing file",
+      'O',    0,  BOOL,    0,    0,   1,       NO,    NO,
+      ov1, ov2, ov3, ov4, ov5, ov6, ov7, ov8, ov9, ov10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      NO )
+
+Fact( Repeats,
+      "Number of repeats",
+      'R',    1,  INT,    0,    0, 1000000,    1,    YES,
+      ri1, ri2, ri3, ri4, ri5, ri6, ri7, ri8, ri9, ri10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      YES )
+
+Fact( Clusters,
+      "Number of clusters",
+      'S',    1,  INT,    0,    1,   5000,      256,  YES,
+      ci1, ci2, ci3, ci4, ci5, ci6, ci7, ci8, ci9, ci10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      YES )
+
+Fact( InitMethod,
+      "Initialization method",
+      'I',    1,  ENUM,    0,    0,   9,      1,      YES,
+      Density, Random, Kmeanspp, Markos, Projection, Luxburg, MaxMin, Splitting, Sort, ii10,
+      "DensityPeaks", "Random", "K-means++", "Bradley",
+      "Projection", "Luxburg", "MaxMin", "Random partition (Forgy)", "Splitting", "Sorting heuristic",
+      YES )
+
+Fact( HybridMethod,
+      "Hybrid methods combining K-means",
+      'H',    1,  ENUM,    0,    0,   1,      0,      YES,
+      None0,KMPeaks, aa1, aa2, aa3, aa4, aa5, aa6, aa7, aa8,
+      "None","Kmeans+DensityPeaks", "", "",
+      "", "", "", "", "", "",
+      YES )
+
+Fact( HybridMethodVar,
+      "Hybrid method variant",
+      'H',    2,  INT,    0,    0,   10000,      1,      YES,
+      hmv1, hmv2,hmv3,hmv4,hmv5,hmv6,hmv7, hmv8, hmv9, hmv10,
+      0, 0,0,0,0,0,0,0, 0, 0,
+      Value(InitMethod)==MaxMin )
+
+
+Fact( InitMethodVar,
+      "Initialization method variant (Maxmin-variant: 1=rand point first, 2=mean first)",
+      'I',    2,  INT,    0,    0,   10000,      1,      YES,
+      imv1, imv2,imv3,imv4,imv5,imv6,imv7, imv8, imv9, imv10,
+      0, 0,0,0,0,0,0,0, 0, 0,
+      Value(InitMethod)==MaxMin )
+
+Fact( InitMethodOpt,
+      "Initialization method option",
+      'I',    3,  INT,    0,    0,   10000,      0,      YES,
+      imo1, imo2,imo3,imo4,imo5,imo6,imo7, imo8, imo9, imo10,
+      0, 0,0,0,0,0,0,0, 0, 0,
+      Value(InitMethod)==MaxMin )
+
+Fact( InitMethodThirdOpt,
+      "Initialization method (third) option",
+      'I',    4,  INT,    0,    0,   10000,      0,      YES,
+      imoB1, imoB2,imoB3,imoB4,imoB5,imoB6,imoB7, imoB8, imoB9, imoB10,
+      0, 0,0,0,0,0,0,0, 0, 0,
+      Value(InitMethod)==MaxMin )
+
+Fact( Sample,
+      "Sample percentage 10000/(1..10000)",
+      'B',    1,  INT,    0,    0, 10000,    1000,    YES,
+      samp1, samp2, samp3, samp4, samp5, samp6, samp7, samp8, samp9, samp10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(Iterations)>0 )
+
+
+Fact( Iterations,
+      "Iterations, 0=INF",
+      'T',    1,  INT,    0,    0, 50000000,    0,    YES,
+      ni1, ni2, ni3, ni4, ni5, ni6, ni7, ni8, ni9, ni10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(Iterations)>0 )
+
+Fact( RandomSeed,
+       "Random seed (0=clock) ",
+       'Z',    1,  INT,    0,    0,2147483647,     0,      NO,
+       rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       Value(RandomSeed) != 0 )
+
+/* -------------------------------------------------------------------------- */
+/*    Parameter identifier                                                    */
+/*      key    no   type value  min  max   default   save to file             */
+/*      enum of values                                                        */
+/*      name of values                                                        */
+/*      printing                                                              */
+/* -------------------------------------------------------------------------- */
+

@@ -1,0 +1,106 @@
+BINƒƒRIPUUTIETORAKENTEEN YLEISKUVAUS
+Last updated 16.12.98 (iak)
+
+/*===================  B I N A R Y   T R E E   ========================*/
+
+
+#define BintreeSize(tree) ((tree)->nnodes)
+
+  Palauttaa puussa olevien solmujen (data-alkioiden) lukum‰‰r‰n.
+
+
+void    InitBintree(BINTREE* tree,
+                    int (*compf)(void* a, void* b, void* info));
+
+  Alustaa bin‰‰ripuun. Vertailufunktion 'compf' palautusarvojen on
+  oltava seuraavat:
+
+  -1, jos 'a' <  'b'
+   0, jos 'a' == 'b'
+   1, jos 'a' >  'b'
+
+  Yht‰suuri alkio lis‰t‰‰n oikeaksi lapseksi.
+
+
+void*   DeleteMinimumFromBintree(BINTREE* tree);
+
+  Poistaa bin‰‰ripuusta pienimm‰n alkion ja palauttaa sen. Jos puu on
+  tyhj‰, palautetaan NULL.
+
+
+void*   DeleteMaximumFromBintree(BINTREE* tree);
+
+  Poistaa bin‰‰ripuusta suurimman alkion ja palauttaa sen. Jos puu on
+  tyhj‰, palautetaan NULL.
+
+
+void*   DeleteNodeFromBintree(BINTREE* tree, void* d, void* info);
+
+  Poistaa bin‰‰ripuusta alkion 'd' ja palauttaa sen. Jos alkio ei ole
+  puussa, palautetaan NULL.
+
+
+void    InsertToBintree(BINTREE* tree, void* d, void* info);
+
+  Lis‰‰ alkion 'd' bin‰‰ripuuhun. Jos alkio 'd' on jo puussa, uusi
+  'd' lis‰t‰‰n olemassaolevan oikeaksi lapseksi.
+
+
+void*   InsertToBintreeNoDuplicates(BINTREE* tree, void* d, void* info);
+
+  Lis‰‰ alkion 'd' bin‰‰ripuuhun. Jos alkio 'd' on jo puussa,
+  palautetaan osoitin puussa olevaan data-alkioon 'd'. Jos 'd' ei ole
+  puussa, se lis‰t‰‰n sinne ja palautetaan NULL.
+
+
+void*   FindFromBintree(BINTREE* tree, void* d, void* info);
+
+  Palauttaa alkion d bin‰‰ripuusta. Jos alkio ei ole puussa, palautetaan
+  NULL. Alkio j‰‰ puuhun, eli sit‰ ei poisteta.
+
+
+void    FreeBintree(BINTREE* tree);
+
+  Tyhjent‰‰n puun. Vapauttaa solmujen varaaman tilan, asettaa
+  tarvittavat osoittimet ja laskurit NULL- ja 0-arvoiksi
+
+
+int     CheckBintree(BINTREE* tree);
+
+  Debug-k‰yttˆˆn. Tarkastaa puun eheyden. Palauttaa rakenteesta
+  lˆydettyjen ja rakenteeseen talletetun solmujen lukum‰‰r‰n erotuksen.
+
+void    ClearBintreeIterator(STACK* s);
+
+  Vapauttaa iteraattorin varaaman muistin.
+
+
+void    InitPreOrderBintree(BINTREE* tree, STACK* s);
+
+  Alustaa puun esij‰rjestysiteraattorin 's'.
+
+
+void*   PreOrderBintree(STACK* s);
+
+  Palauttaa seuraavan data-alkion esij‰rjestyksess‰.
+
+
+void    InitInOrderBintree(BINTREE* tree, STACK* s);
+
+  Alustaa puun v‰lij‰rjestysiteraattorin 's'.
+
+
+void*   InOrderBintree(STACK* s);
+
+  Palauttaa seuraavan data-alkion v‰lij‰rjestyksess‰.
+
+void    IterateBintreeWithCallback(BINTREE* tree,
+                                   BINTREE_ORDER order,
+                                   int (*callbackf)(void*));
+
+  L‰pik‰y puuta ja kutsuu annettua funktiota parametrina puuhun varastoidut
+  data-alkiot kunnes funktio palauttaa nollasta eroavan arvon tai koko puu
+  on l‰pik‰yty. "order" m‰‰ritt‰‰ j‰rjestyksen seuraavasti:
+    PREORDER  - callback, left, right
+    INORDER   - left, callback, right
+    POSTORDER - left, right, callback

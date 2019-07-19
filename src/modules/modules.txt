@@ -1,0 +1,53 @@
+MODULES PACKAGE - GENERAL INFORMATION
+Last updated: 15.11.01 (PF)
+
+
+GENERAL PURPOSE MODULES:
+
+Module:    Ver.: Author:           Content:
+---------  ----- ----------------  -------------------------------------
+BINIMAGE   0.17  Eugene Ageenko    Data structure tailored for PBM images.
+BINTREE    0.08a Timo Kaukoranta   Generic binary tree data structure.
+FILE       0.16  Pasi Fränti       General I/O and file name routines.
+HEAP       0.02  Timo Kaukoranta   Generic heap data structure.
+IMAGE      0.17  Pasi Fränti       Data structure and interface for images.
+INTERFC    0.10  Ismo Kärkkäinen   Printing and exit routines for modules.
+MEMCTRL    0.11  Timo Kaukoranta   Memory control.
+OWNTYPES   0.03  Juha Kivijärvi    Commonly used type definitions.
+PARAMETR   0.31b Pasi Fränti       Command line parsing.
+PGM        0.37  Pasi Fränti       PBM/PGM/PPM file format routines.
+REPORTING  0.22  Radu Mariescu     RS/KM reporting + file type parsing
+QM         0.13a Pasi Fränti       QM-coder module (arithmetic coding).
+QMCODER    0.02  Pavel Kopylov     QM-coder module (arithmetic coder).
+MQCODER    0.05  Pavel Kopylov     MQ-coder module (arithmetic coder).
+RANDOM     0.08a Timo Kaukoranta   Random generator etc.
+SORT       0.09a Pasi Fränti       Generic sorting module.
+STACK      0.01  Timo Kaukoranta   Generic stack data structure
+
+
+APPLICATION SPECIFIC MODULES:
+
+Module:    Ver.: Author:           Content:
+---------  ----- ----------------  -------------------------------------
+CONTREE    0.14  Eugene Ageenko    BIN: Context tree model for JBIG.
+EDM        0.07  Eugene Ageenko    BIN: Compression routines for EDM.
+DIP        0.03  Pasi Fränti       IMA: Digital image procesing routines.
+GLA        0.19a Timo Kaukoranta   CB: GLA routines.
+PNN        0.20a Timo Kaukoranta   CB: PNN routines.
+SPLIT      0.39  Timo Kaukoranta   CB: Split routines.
+CB         0.70  Juha Kivijärvi    VQ: Codebook and training set routines.
+ITERATE    0.02  Juha Kivijärvi    VQ: Generates all TS-limited codebooks.
+SA         0.05  Timo Kaukoranta   VQ: Simulated annealing.
+SEARCH     0.03a Pasi Fränti       VQ: Search structures for CB.
+SOLUTION   0.11  Juha Kivijärvi    VQ: Abstractions for VQ codebook generation.
+SORTCB     0.05  Timo Kaukoranta   VQ: Sorting routines for TS/CB data strucutre.
+
+Last changed:
+27.06.16    CB
+24.06.16    REPORTING
+15.11.01    FILE
+02.07.01    IMAGE
+24.04.01    PARAMETR
+15.04.01    IMAGE
+06.04.01    INTERFC, SOLUTION
+

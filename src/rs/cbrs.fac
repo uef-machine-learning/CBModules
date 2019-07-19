@@ -1,0 +1,85 @@
+Fact( QuietLevel,
+      "Quiet level",
+      'Q',    1,  INT,    0,    0, 99,    2,    NO,
+      qi1, qi2, qi3, qi4, qi5, qi6, qi7, qi8, qi9, qi10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      NO )
+
+Fact( SavePartition,
+      "Save partition file",
+      'P',    0,  BOOL,    0,    0,   1,      NO,    NO,
+      sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(SavePartition) )
+
+Fact( OverWrite,
+      "Overwrite existing file",
+      'O',    0,  BOOL,    0,    0,   1,       NO,    NO,
+      ov1, ov2, ov3, ov4, ov5, ov6, ov7, ov8, ov9, ov10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(OverWrite) > 0 )
+
+Fact( Iterations,
+      "Iterations",
+      'T',    1,  INT,    0,    0, 50000000,    5000,    YES,
+      ni1, ni2, ni3, ni4, ni5, ni6, ni7, ni8, ni9, ni10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(Iterations)>0 )
+
+Fact( KMeansIterations,
+      "K-means iterations",
+      'K',    1,  INT,    0,    0, 100,    2,    YES,
+      ki1, ki2, ki3, ki4, ki5, ki6, ki7, ki8, ki9, ki10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      YES )
+
+Fact( Deterministic,
+      "Deterministic choice",
+      'D',    0,  BOOL,    0,    0,   1,       NO,    NO,
+      dv1, dv2, dv3, dv4, dv5, dv6, dv7, dv8, dv9, dv10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(Deterministic) )
+      
+Fact( Stochastic,
+      "Stochastic schock",
+      'H',    1,  INT,    0,    1,   100,      256,    YES,
+      sh1, sh2, sh3, sh4, sh5, sh6, sh7, sh8, sh9, sh10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(Stochastic) )
+
+Fact( TravellerSearch,
+      "Traveller search",
+      'M',    0,  BOOL,    0,    0,   1,       NO,    NO,
+      mv1, mv2, mv3, mv4, mv5, mv6, mv7, mv8, mv9, mv10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(TravellerSearch) )
+
+Fact( Clusters,
+      "Number of clusters",
+      'S',    1,  INT,    0,    1,   5000,      256,    YES,
+      ci1, ci2, ci3, ci4, ci5, ci6, ci7, ci8, ci9, ci10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      YES )
+
+Fact( RandomSeed,
+       "Random seed (0=clock) ",
+       'Z',    1,  INT,    0,    0,99999,     0,      NO,
+       rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       Value(RandomSeed) != 0 )
+
+Fact( MonitorProgress,
+      "Monitor progress",
+      'X',    0,  BOOL,    0,    0,   1,      NO,    NO,
+      mp1, mp2, mp3, mp4, mp5, mp6, mp7, mp8, mp9, mp10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(MonitorProgress) )
+
+/* -------------------------------------------------------------------------- */
+/*    Parameter identifier                                                    */
+/*      key    no   type value  min  max   default   save to file             */
+/*      enum of values                                                        */
+/*      name of values                                                        */
+/*      printing                                                              */
+/* -------------------------------------------------------------------------- */
+

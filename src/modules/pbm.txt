@@ -1,0 +1,34 @@
+22.11.2000
+Pasi Fränti
+
+This is brief documentation how to write PBM files using
+the PGM module.
+
+--------------------------------------------------------------
+#include "pgm.h"
+
+  <open file>
+  WritePbmHeader(f, ImageWidth);
+  for(y=1; y<=ImageSizeY; y++)
+     {
+	 for(x=1; x<=ImageSizeX; x++)
+	   {
+	   OutputPBMBit(f, Pixel[y][x]);
+	   }
+	 FlushOutputBitBuffer(f);
+     }
+  <close file>
+--------------------------------------------------------------
+f is file pointer, and the rest of the variables are integers.
+
+Note that the OutputPBMBit uses static variables to buffer the
+output bits into byte. When the buffer byte is filled by 8 bits,
+then the routine outpus one byte.
+
+The FlushOutputBitBuffer takes care that incomplete bytes will
+also be output at the end of every line. This has no affect on
+the image width, but it is merely to prevent pixels from different
+lines to be joint into same byte. The side-effect is that few bits
+in the last byte of every line are unused if the image wirdth is
+not divisible by 8.
+
