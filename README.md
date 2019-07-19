@@ -11,12 +11,6 @@ This package is also needed as a dependency to be able to build some of the proj
 =======
 K-means
 
-If you use this k-means software for scientific work, please cite
-the following paper:
-
-P. Franti and S. Sieranoja, "How much k-means can be improved by using better initialization and repeats?", Pattern Recognition, 93, 95-112, 2019.
-
-
 Compile:
 make cbkm
 
@@ -110,6 +104,6 @@ make cbkm DEBUG=-g
 
 # References
 [1] P Fränti, S Sieranoja, "How much can k-means be improved by using better initialization
-and repeats?" Pattern Recognition, 2019 https://doi.org/10.1016/j.patcog.2019.04.014
-[2] Pasi Fränti and Juha Kivijärvi. "Randomized local search algorithm for the clustering problem". Pattern Analysis and Applications, 3 (4), 358-369, 2000. http://www.cs.joensuu.fi/pub/franti/papers/Rls.ps
+and repeats?", Pattern Recognition, 93, 95-112, 2019. https://doi.org/10.1016/j.patcog.2019.04.014
+[2] P. Fränti, "Efficiency of random swap clustering", Journal of Big Data, 5:13, 1-29, 2018. (pdf) JF=1 https://doi.org/10.1186/s40537-018-0122-y
 [3] P. Fränti,  J. Kivijärvi,  T. Kaukoranta,  O. Nevalainen, "Genetic algorithms for large scale clustering problems" The Computer Journal, Volume 40, Issue 9, 1997, Pages 547–554 https://doi.org/10.1093/comjnl/40.9.547
