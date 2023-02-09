@@ -1,5 +1,5 @@
 /*-------------------------------------------------------------------*/
-/* CBGA.C         Pasi Fr‰nti & Olli Virmajoki                       */
+/* CBGA.C         Pasi Fr√§nti & Olli Virmajoki                       */
 /*                                                                   */
 /* - Genetic Algorithm - "Next generation"                           */
 /* - Current version supports:                                       */
@@ -30,12 +30,6 @@
 #include "solution.h"
 #include "sortcb.h"
 #include "textfile.h"
-
-/*-------------------------- DOS special -----------------------------*/
-
-#if defined(__MSDOS__)
-#include <conio.h>
-#endif
 
 /*--------------------------- Constants ------------------------------*/
 
@@ -1810,8 +1804,8 @@ int main(int argc, char* argv[])
   SOLUTION*     Sold[MaxGenerations];
   SOLUTION*     Snew[MaxGenerations];
   SASchedule    SAS;
-  char          TSName[64] = { '\0' };
-  char          CBName[64] = { '\0' };
+  char          TSName[16384] = { '\0' };
+  char          CBName[16384] = { '\0' };
   double	Error[MaxGenerations];
   double        PrevError=0;
   long          watch;
@@ -1849,9 +1843,7 @@ int main(int argc, char* argv[])
      /* if( Value() && NoImprovement ) IncreaseGenerationSize(); */
      PrintProgress(&Snew[0]->CB, &SAS, g, PrevError, Error, watch);
      DecreaseTemperature(&SAS);
-	 #if defined(__MSDOS__)
-	 if (kbhit()) GoOn=(getch()!=27);
-	 #endif
+
      if(!GoOn || NoImprovement) break;
      }
 
