@@ -49,7 +49,10 @@ float DeScale(CODEBOOK *CB, int i, int j,  float **MinMax, int maxval);
 #define MAXFILENAME 1024
 #define MAX_1BYTE 255
 #define MAX_2BYTE 65535
-#define MAX_3BYTE 1000000
+// #define MAX_3BYTE 1000000
+#define MAX_3BYTE 214748364
+
+
 #define DEFAULT_MINMAX_FILE "minmax.txt"
 #define MINMAX_FILENAME_SEPARATOR ';'
 

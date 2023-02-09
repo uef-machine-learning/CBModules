@@ -280,7 +280,6 @@ void ReadCodebookTXT(char *FileName, CODEBOOK *CB) {
   int ok = 0;
   int count = 0;
   float **Data;
-  float **MinMax;
 
   // ok = ReadInputData(&Data, &count, &dim, FileName, Value(QuietLevel));
   ok = ReadInputData(&Data, &count, &dim, FileName, 4); // TODO: quietlevel
@@ -290,27 +289,26 @@ void ReadCodebookTXT(char *FileName, CODEBOOK *CB) {
     ExitProcessing(FATAL_ERROR);
   }
   CB->MinMax = FindMinMax(Data, count, dim, 4);
-
-  // Set min and max same in all dimensions. To keep same aspect ratio in scaling. 
-  MinMax = CB->MinMax;
-  float minv = MinMax[i][0];
-  float maxv = MinMax[i][1];
+  float tmin = CB->MinMax[0][0];
+  float tmax = CB->MinMax[0][1];
   for (int i = 0; i < dim; i++) {
-    if (MinMax[i][0] < minv) {
-      minv = MinMax[i][0];
+    if (tmax < CB->MinMax[i][1]) {
+      tmax = CB->MinMax[i][1];
     }
-    if (MinMax[i][1] > maxv) {
-      maxv = MinMax[i][1];
+    if (tmin > CB->MinMax[i][0]) {
+      tmin = CB->MinMax[i][0];
     }
   }
   for (int i = 0; i < dim; i++) {
-    MinMax[i][0] = minv;
-    MinMax[i][1] = maxv;
+    CB->MinMax[i][1] = tmax;
+    CB->MinMax[i][0] = tmin;
   }
 
-  Data2CB(Data, CB, count, dim, CB->MinMax,
-          // 0 /*automatic*/, 1 /* scaling*/, 4 /*ql*/);
-          3 /* 3 byte */, 1 /* scaling*/, 4 /*ql*/);
+  Data2CB(Data, CB, count, dim, CB->MinMax, 3 /* 3 byte */, 1 /* scaling*/, 4 /*ql*/);
+  // 3 /* 3 byte */, 0 /* scaling*/, 4 /*ql*/);
+  // OLD:
+  // 3 /* 3 byte */, 1 /* scaling*/, 4 /*ql*/);
+  // 0 /*automatic*/, 1 /* scaling*/, 4 /*ql*/);
   // 9 /* INT_MAX */, 1 /* scaling*/, 4 /*ql*/);
 
   CB->InputFormat = TXT;
@@ -321,36 +319,25 @@ void Data2CB(float **Data, CODEBOOK *CB, int count, int dim, float **MinMax, int
              int ql) {
   int maxval, i, j;
   float scale, totalMin, totalMax;
-  // char GenMethod[MAXFILENAME+1] = "\0";
   char GenMethod[1000] = "\0"; // TODO: constants.h ?
 
-  // TODO: needed?:
   maxval = DetermineMaxval(Data, count, dim, &bytes);
-  // maxval = 2147483;
-
-  // maxval = GetMaxval(CB);
 
   /* is it possible not to scale? */
+  totalMin = fvSetTotalMinimum(Data, count, dim);
+  totalMax = fvSetTotalMaximum(Data, count, dim);
   if (!scaling) {
-    totalMin = fvSetTotalMinimum(Data, count, dim);
-    totalMax = fvSetTotalMaximum(Data, count, dim);
 
     if ((totalMax > maxval) || (totalMin < 0)) {
       ErrorMessage("ERROR: Cannot save vectors without scaling!\n");
       ExitProcessing(FATAL_ERROR);
     }
   }
+  // printf("Total min/max: %f/%f\n", totalMin, totalMax);
 
-  /* saving minmax name to GenerationMethod-field, if needed */
-  if (scaling >= 2) {
-    // strcpy(GenMethod, MinMaxName);
-    // GenMethod[strlen(GenMethod)]   = MINMAX_FILENAME_SEPARATOR;
-    // GenMethod[strlen(GenMethod)+1] = '\0';
-    // strcat(GenMethod, ProgName);
-  } else {
-    // strcpy(GenMethod, ProgName);
-  }
-
+  // for (int i = 0; i < dim; i++) {
+    // printf("minmax:%f %f \n", MinMax[j][0], MinMax[j][1]);
+  // }
   CreateNewTrainingSet(CB, count, dim, 1, bytes, 0, maxval, 0, GenMethod);
 
   /* set all vector frequencies to 1 */
@@ -386,9 +373,9 @@ void Data2CB(float **Data, CODEBOOK *CB, int count, int dim, float **MinMax, int
   if (ql) {
     // PrintMessage("\nVectors were saved to output codebook %s\n", OutName);
     if (scaling) {
-      PrintMessage("All attributes were scaled to range [0,%d]\n", maxval);
+      // PrintMessage("All attributes were scaled to range [0,%d]\n", maxval);
     } else {
-      PrintMessage("All attributes were rounded to integers and no scaling was done.\n");
+      // PrintMessage("All attributes were rounded to integers and no scaling was done.\n");
     }
   }
   // return CB;
