@@ -17,19 +17,36 @@ KMEANSDEP=$(OBJECTS)sortcb.o \
 		  $(OBJECTS)stack.o \
 		  $(OBJECTS)graph.o \
 		  $(OBJECTS)knngraph.o \
+		
+		
+SMDEP = $(OBJECTS)pnn.o \
+	$(OBJECTS)split.o \
+	$(OBJECTS)sort.o \
+	$(OBJECTS)sortcb.o \
+	$(OBJECTS)sa.o \
+	$(OBJECTS)bintree.o \
+	$(OBJECTS)heap.o \
+	$(OBJECTS)stack.o 
 
 GADEP= $(OBJECTS)sa.o  $(OBJECTS)sortcb.o $(OBJECTS)sort.o $(OBJECTS)solution.o $(OBJECTS)heap.o $(OBJECTS)stack.o $(OBJECTS)pnn.o
 
 KMEANSOBJ = kmeans/inits.o kmeans/kmeans.o
 RSOBJ = rs/rs.o
 
-BINS=cbkm cbrs cbga
 
-OPT     = -O2 $(DEBUG) -std=c99  -Wall  -I. -I$(MODULES) -Ikmeans -Irs -Iga 
+SMOBJ = splitmerge/ims.o
+# splitmerge/cbims.o
+
+BINS=cbkm cbrs cbga cbims
+
+OPT     = -O3 $(DEBUG) -std=c99  -Wall  -I. -I$(MODULES) -Ikmeans -Irs -Iga -Isplitmerge 
 
 
 .PHONY : all clean
 all: $(BINS)
+
+cbims: $(COMMONDEP) $(SMDEP) $(SMOBJ) splitmerge/cbims.o
+	$(CC) -o $@ $(OPT) $+ -lm
 
 cbkm: $(COMMONDEP) $(KMEANSDEP) $(KMEANSOBJ) kmeans/cbkm.o
 	$(CC) -o $@ $(OPT) $+ -lm

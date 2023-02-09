@@ -4,7 +4,8 @@
 
 #include "owntypes.h"
 #include "assert.h"
-#define MAXFILENAME 1024
+#define MAXFILENAME 10240
+
 
 /*----------------------- Type definitions ---------------------------*/
 
