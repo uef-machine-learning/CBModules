@@ -43,7 +43,7 @@ Fact( CodebookSizeChange,
 
 Fact( RandomSeed,
       "Random Seed, 0=clock ",
-      'Z',    1,  INT,    0,    0,99999,     0,      NO,
+      'Z',    1,  INT,    0,    0,2147483647,     0,      NO,
       rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       Value(RandomSeed) != 0 )

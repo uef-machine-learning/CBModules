@@ -27,6 +27,13 @@ SMDEP = $(OBJECTS)pnn.o \
 	$(OBJECTS)bintree.o \
 	$(OBJECTS)heap.o \
 	$(OBJECTS)stack.o 
+	
+SPLITDEP = $(OBJECTS)sa.o	\
+          $(OBJECTS)sortcb.o \
+          $(OBJECTS)sort.o  	\
+          $(OBJECTS)split.c 	\
+          $(OBJECTS)bintree.o 	\
+
 
 GADEP= $(OBJECTS)sa.o  $(OBJECTS)sortcb.o $(OBJECTS)sort.o $(OBJECTS)solution.o $(OBJECTS)heap.o $(OBJECTS)stack.o $(OBJECTS)pnn.o
 
@@ -37,15 +44,18 @@ RSOBJ = rs/rs.o
 SMOBJ = splitmerge/ims.o
 # splitmerge/cbims.o
 
-BINS=cbkm cbrs cbga cbims
+BINS=cbkm cbrs cbga cbims cbsplit
 
-OPT     = -O3 $(DEBUG) -std=c99  -Wall  -I. -I$(MODULES) -Ikmeans -Irs -Iga -Isplitmerge 
+OPT     = -O3 $(DEBUG) -std=c99  -Wall  -I. -I$(MODULES) -Isplit -Ikmeans -Irs -Iga -Isplitmerge -Isplit -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable
 
 
 .PHONY : all clean
 all: $(BINS)
 
 cbims: $(COMMONDEP) $(SMDEP) $(SMOBJ) splitmerge/cbims.o
+	$(CC) -o $@ $(OPT) $+ -lm
+	
+cbsplit: $(COMMONDEP) $(SMDEP) $(SMOBJ) split/cbsplit.o
 	$(CC) -o $@ $(OPT) $+ -lm
 
 cbkm: $(COMMONDEP) $(KMEANSDEP) $(KMEANSOBJ) kmeans/cbkm.o
