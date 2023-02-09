@@ -1,0 +1,188 @@
+/* -------------------------------------------------------------------------- */
+/*    Parameter identifier                                                    */
+/*      key    no   type value  min  max   default   save to file             */
+/*      enum of values                                                        */
+/*      name of values                                                        */
+/*      printing                                                              */
+/* -------------------------------------------------------------------------- */
+
+Fact( OverWrite,
+      "Overwrite",
+      'O',    0,  BOOL,   0,    0,   1,     NO,      NO,
+      ow1, ow2, ow3, ow4, ow5, ow6, ow7, ow8, ow9, ow10,
+      "NO", "YES", 0, 0, 0, 0, 0, 0, 0, 0,
+      NO )
+
+Fact( QuietLevel,
+      "Quiet level",
+      'Q',    1,  INT,    0,    0,  99,      2,      NO,
+      sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      NO )
+
+Fact( SavePartition,
+      "Save partition file",
+      'P',    0,  BOOL,    0,    0,   1,      NO,    NO,
+      pa1, pa2, pa3, pa4, pa5, pa6, pa7, pa8, pa9, pa10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      (Value(SavePartition)) )
+
+Fact( CodebookSize,
+      "Codebook size",
+      'S',    1,  INT,    0,    1,9999,    256,     YES,
+      cs1, cs2, cs3, cs4, cs5, cs6, cs7, cs8, cs9, cs10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(CodebookSizeChange) == 0  )
+
+Fact( CodebookSizeChange,
+      "Codebook size change",
+      'C',    1,  INT,    0,    1,9999,      0,      NO,
+      csc1, csc2, csc3, csc4, csc5, csc6, csc7, csc8, csc9, csc10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(CodebookSizeChange) > 0 )
+
+Fact( RandomSeed,
+      "Random Seed, 0=clock ",
+      'Z',    1,  INT,    0,    0,99999,     0,      NO,
+      rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(RandomSeed) != 0 )
+
+/* -------------------------------------------------------------------------- */
+/*    Parameter identifier                                                    */
+/*      key    no   type value  min  max   default   save to file             */
+/*      enum of values                                                        */
+/*      name of values                                                        */
+/*      printing                                                              */
+/* -------------------------------------------------------------------------- */
+
+Fact( PartitionErrorType,
+      "Partition error type",
+      'E',    1,  ENUM,   0,    0,   6,      6,      NO,
+      SplitAllPartitions, SquareError, SizeOfPartition,
+      FurthestTwoVectors, ThirdMoment, SplitRandom, OptimalSelection, pet8, pet9, pet10,
+      "Split All Partitions", "Square error", "Size of partition", "Furthest two vectors", "ThirdMoment (pseudo)", "Split Random", "Optimal Selection", 0, 0, 0,
+      YES )
+
+Fact( NewVectors,
+      "New Vectors",
+      'V',    1,  ENUM,   0,    0,   8,      8,      NO,
+      CurrentAndSigma, CurrentPlusMinusSigma, CurrentAndFurthest, nv4, CurrentAndRandom, TwoFurthest, TwoRandom, MeansOfCurrentAndFurthest, FasterVariant, nv10,
+      "Current And Sigma", "Current +-Sigma", "Current And Furthest", "Not used", "Current And Random", "Two Furthest", "Two Random", "Means Of Current And Furthest", "Faster variant of above", 0,
+      Value(Hyperplane) == NO )
+
+Fact( NewVectorsHeuristically,
+      "New Vectors Heuristically",
+      'V',    2,  ENUM,   0,    0,   1,    YES,      NO,
+      nvh1, nvh2, nvh3, nvh4, nvh5, nvh6, nvh7, nvh8, nvh9, nvh10,
+      "NO", "YES", 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(Hyperplane) == NO && Value(NewVectorsHeuristically) == YES )
+
+/* -------------------------------------------------------------------------- */
+/*    Parameter identifier                                                    */
+/*      key    no   type value  min  max   default   save to file             */
+/*      enum of values                                                        */
+/*      name of values                                                        */
+/*      printing                                                              */
+/* -------------------------------------------------------------------------- */
+
+Fact( Hyperplane,
+      "Split by Hyperplane",
+      'H',    0,  BOOL,   0,    0,   1,      0,      NO,
+      hp1, hp2, hp3, hp4, hp5, hp6, hp7, hp8, hp9, hp10,
+      "NO", "YES", 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(Hyperplane) == YES )
+
+Fact( HyperplanePivot,
+      "Hyperplane Pivot",
+      'H',    1,  ENUM,   0,    0,   7,      2,      NO,
+      HPPCentroid, HPPOptimal, HPPOptimalEquitz, HPPWeightedCentroid, HPPGoeddelBass, HPPMomentPreserving, HPPLloydScalarQuantization, HPPOptimalWu, hpp9, hpp10,
+      "Centroid", "Optimal (partition)", "Optimal (Equitz)", "Weighted Centroid", "MinMaxMean", "Moment Preserving", "Lloyd Scalar Quantization", "Optimal (Wu)", 0, 0,
+      Value(Hyperplane) == YES )
+
+Fact( HyperplaneLine,
+      "Hyperplane Line",
+      'H',    2,  ENUM,   0,    0,   2,      0,      NO,
+      HPLPCA, HPLRegression, HPLFurthest, hpl4, hpl5, hpl6, hpl7, hpl8, hpl9, hpl10,
+      "PCA", "Regression", "Furthest vectors", 0, 0, 0, 0, 0, 0, 0,
+      Value(Hyperplane) == YES )
+
+Fact( PartitionRemapping,
+      "Local Repartitioning",
+      'L',    0,  BOOL,   0,    0,   1,     NO,      NO,
+      pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10,
+      "NO", "YES", 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(PartitionRemapping) == YES )
+
+Fact( LocalGLA,
+      "Local GLA",
+      'W',    0,  BOOL,   0,    0,   1,     NO,      NO,
+      lgla1, lgla2, lgla3, lgla4, lgla5, lgla6, lgla7, lgla8, lgla9, lgla10,
+      "NO", "YES", 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(LocalGLA) == YES )
+
+Fact( LocalGLAIterations,
+      "Local GLA Iterations, 0=Only new centroids",
+      'W',    1,  INT,    0,    0,9999,   9999,      NO,
+      lglai1, lglai2, lglai3, lglai4, lglai5, lglai6, lglai7, lglai8, lglai9, lglai10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(LocalGLA) == YES )
+
+Fact( GLAIterations,
+      "GLA iterations",
+      'G',    1,  INT,    0,    0,9999,      0,      NO,
+      glai1, glai2, glai3, glai4, glai5, glai6, glai7, glai8, glai9, glai10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      YES )
+
+/* -------------------------------------------------------------------------- */
+/*    Parameter identifier                                                    */
+/*      key    no   type value  min  max   default   save to file             */
+/*      enum of values                                                        */
+/*      name of values                                                        */
+/*      printing                                                              */
+/* -------------------------------------------------------------------------- */
+
+Fact( VectorRandomizing,
+      "Vector Randomizing",
+      'R',    1,  ENUM,   0,    0,   3,      0,      NO,
+      NoRandomizing, RandomCentroid, RandomTrainingSet, RandomBoth, vr5, vr6, vr7, vr8, vr9, vr10,
+      "No Randomizing", "Random Centroid", "Random Training Set", "Random Both", 0, 0, 0, 0, 0, 0,
+      YES )
+
+Fact( TemperatureDistribution,
+      "Temper. Distribution",
+      'R',    2,  ENUM,   0,    0,   1,      0,      NO,
+      Even, Gaussian, td3, td4, td5, td6, td7, td8, td9, td10,
+      "Even Temper.", "Gaussian Temper.", 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(VectorRandomizing) != NoRandomizing )
+
+Fact( TemperatureFunction,
+      "Temper. Decrease Function",
+      'R',    3,  ENUM,   0,    0,   1,      1,      NO,
+      TFLinear, TFlogarithmical, tf3, tf4, tf5, tf6, tf7, tf8, tf9, tf10,
+      "Linear Temper.", "Logarithmical Temper.", 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(VectorRandomizing) != NoRandomizing )
+
+Fact( TemperatureInitial,
+      "Temper. Initial (% of MaxValue)",
+      'R',    4,  INT,   0,    0,   100,    20,      NO,
+      ti1, ti2, ti3, ti4, ti5, ti6, ti7, ti8, ti9, ti10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(VectorRandomizing) != NoRandomizing )
+
+Fact( TemperatureChange,
+      "Temper. Change (% of current)",
+      'R',    5,  INT,   0,    0,   100,     1,      NO,
+      tc1, tc2, tc3, tc4, tc5, tc6, tc7, tc8, tc9, tc10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      Value(VectorRandomizing) != NoRandomizing )
+
+/* -------------------------------------------------------------------------- */
+/*    Parameter identifier                                                    */
+/*      key    no   type value  min  max   default   save to file             */
+/*      enum of values                                                        */
+/*      name of values                                                        */
+/*      printing                                                              */
+/* -------------------------------------------------------------------------- */
+
