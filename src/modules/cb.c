@@ -1439,6 +1439,19 @@ void WriteCodebook(char* FileName, CODEBOOK *CB, int AllowOverWrite)
   fclose(f);
 }
 
+/* ----------------------------------------------------------------- */
+
+void OutputCodebookCheckTXT(char* CBName, CODEBOOK* CB, TRAININGSET* TS)
+{
+  if(TS->InputFormat==TXT) {
+      SaveCB2TXT(CB, CBName, TS->MinMax, NULL, NULL);
+  }
+  else {
+      WriteCodebook(CBName, CB, YES);
+  }
+
+}
+
 
 
 

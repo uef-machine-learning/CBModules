@@ -177,6 +177,7 @@ CBFILETYPE DetermineCBFileTypeConsideringOrder(char* FileName, int order);
 void       ReadCodebook(char* FileName, CODEBOOK* CB);
 
 void       WriteCodebook(char* FileName, CODEBOOK* CB, int AllowOverWrite);
+void OutputCodebookCheckTXT(char* CBName, CODEBOOK* CB, TRAININGSET* TS);
 void       PrintCodebook(CODEBOOK* CB);
 void       CreateNewCodebook(CODEBOOK*    CB,
                              int          booksize,

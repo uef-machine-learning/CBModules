@@ -29,7 +29,7 @@ Fact( RemovalCostCalculation,
 
 Fact( QuietLevel,
       "Quiet level",
-      'Q',    1,  INT,    0,    0,  99,      2,      NO,
+      'Q',    1,  INT,    0,    0,  99,      1,      NO,
       ql1, ql2, ql3, ql4, ql5, ql6, ql7, ql8, ql9, ql10,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       NO )

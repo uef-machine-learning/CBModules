@@ -1,5 +1,5 @@
 /*-------------------------------------------------------------------*/
-/* CBIS.C         Pasi Fr‰nti & Olli Virmajoki & Timo Kaukoranta     */
+/* CBIS.C         Pasi Fr√§nti & Olli Virmajoki & Timo Kaukoranta     */
 /*                                                                   */
 /* - Iterative shrinking                                             */
 /*                                                                   */
@@ -828,10 +828,10 @@ int main(int argc, char* argv[])
   CODEBOOK		CB;
   PARTITIONING  P1;
   PARTITIONING  P2;
-  char			TSName[64]	   = { '\0' };
-  char			CBName[64]	   = { '\0' };
-  char			InitCBName[64] = { '\0' };
-  char			PAName[64]	   = { '\0' };
+  char			TSName[MAXFILENAME]	   = { '\0' };
+  char			CBName[MAXFILENAME]	   = { '\0' };
+  char			InitCBName[MAXFILENAME] = { '\0' };
+  char			PAName[MAXFILENAME]	   = { '\0' };
   
   ParameterInfo paraminfo[3] = { { TSName,	   FormatNameTS, 0, INFILE	},
 								 { InitCBName, FormatNameCB, 1, INFILE	},
@@ -853,7 +853,8 @@ int main(int argc, char* argv[])
             Value(RemovalCostCalculation), Value(Update), Value(QuietLevel));
         break;
   }
-  SaveSolution(CBName, PAName, &TS, &CB, &P1);
+  // SaveSolution(CBName, PAName, &TS, &CB, &P1);
+  OutputCodebookCheckTXT(CBName, &CB, &TS); //TODO: Partition output?
   ShutDown(&TS, &CB, &P1, &P2);
   return( 0 );
 }
