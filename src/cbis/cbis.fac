@@ -1,0 +1,79 @@
+/* -------------------------------------------------------------------------- */
+/*    Parameter identifier                                                    */
+/*      key    no   type value  min  max   default   save to file             */
+/*      enum of values                                                        */
+/*      name of values                                                        */
+/*      printing                                                              */
+/* -------------------------------------------------------------------------- */
+
+Fact( ISMethod,
+      "Iterarive Shrinking Method",
+      'I',  1,   ENUM,   0,   0,   1,   1,   NO,
+      NOTHING, IS, is3, is4, is5, is6, is7, is8, is9, is10,
+      "Nothing", "Iterative shrinking", 0, 0, 0, 0, 0, 0, 0, 0,
+      (Value(ISMethod) == IS) )
+
+Fact( Update,
+      "Update style",
+      'U', 1, ENUM, 0, 1, 3, 1, NO,
+      NO_UPDATE, MINIMUM, STANDARD, EXTENSIVE, u5, u6, u7, u8, u9, u10,
+      "No update", "Minimum update", "Standard update", "Extensive update", 0, 0, 0, 0, 0, 0,
+      YES )
+
+Fact( RemovalCostCalculation,
+      "Removal cost calculation",
+      'R', 1, ENUM, 0, 1, 2, 1, NO,
+      NO_CALC, SIMPLE, EXACT, r4, r5, r6, r7, r8, r9, r10,
+      "No calculation", "Simple Calculation", "Exact calculation", 0, 0, 0, 0, 0, 0, 0,
+      YES )
+
+Fact( QuietLevel,
+      "Quiet level",
+      'Q',    1,  INT,    0,    0,  99,      2,      NO,
+      ql1, ql2, ql3, ql4, ql5, ql6, ql7, ql8, ql9, ql10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      NO )
+
+Fact( OverWrite,
+      "Overwrite existing file",
+      'O',    0,  BOOL,    0,    0,   1,      NO,    NO,
+      ov1, ov2, ov3, ov4, ov5, ov6, ov7, ov8, ov9, ov10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      NO )
+
+Fact( SavePartition,
+      "Save partition file",
+	  'P',    0,  BOOL,    0,    0,   1,      NO,    NO,
+      sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      (Value(SavePartition)) )
+
+Fact( CodebookSize,
+      "Codebook size",
+      'S',    1,  INT,    0,    1,  30000,   256,    YES,
+      cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9, cb10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      YES )
+
+Fact( GLAIterations,
+      "Number of GLA iterations",
+      'G',    1,  INT,    0,    0,  30000,     0,    YES,
+      gi1, gi2, gi3, gi4, gi5, gi6, gi7, gi8, gi9, gi10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      (Value(GLAIterations)>0) )
+
+Fact( UpdateRemovalCosts,
+	  "Update removal costs",
+	  'R',    0,  BOOL,    0,    0,   1,      NO,    NO,
+	  rc1, rc2, rc3, rc4, rc5, rc6, rc7, rc8, rc9, rc10,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      NO )
+
+/* -------------------------------------------------------------------------- */
+/*    Parameter identifier                                                    */
+/*      key    no   type value  min  max   default   save to file             */
+/*      enum of values                                                        */
+/*      name of values                                                        */
+/*      printing                                                              */
+/* -------------------------------------------------------------------------- */
+
