@@ -99,7 +99,7 @@ void InitializeSolution(PARTITIONING *pP, CODEBOOK *pCB, TRAININGSET *pTS,
     int clus);
 void FreeSolution(PARTITIONING *pP, CODEBOOK *pCB);
 YESNO StopCondition(double currError, double newError, int iter);
-llong GenerateInitialSolution(PARTITIONING *pP, CODEBOOK *pCB,
+double GenerateInitialSolution(PARTITIONING *pP, CODEBOOK *pCB,
     TRAININGSET *pTS, int useInitialCB);
 void SelectRandomRepresentatives(TRAININGSET *pTS, CODEBOOK *pCB);
 void SelectRandomRepresentatives2(TRAININGSET *pTS, CODEBOOK *pCB); /* mm */
@@ -113,7 +113,7 @@ void OptimalPartition(CODEBOOK *pCB, TRAININGSET *pTS, PARTITIONING *pP,
     int *active, llong *cdist, int activeCount, llong *distance, int quietLevel);
 void KMeans(PARTITIONING *pP, CODEBOOK *pCB, TRAININGSET *pTS,
     llong *distance, int iter, int travellerSearch, int quietLevel, double time);
-llong ObjectiveFunction(PARTITIONING *pP, CODEBOOK *pCB, TRAININGSET *pTS);
+double ObjectiveFunction(PARTITIONING *pP, CODEBOOK *pCB, TRAININGSET *pTS);
 int FindSecondNearestVector(BOOKNODE *node, CODEBOOK *pCB, int firstIndex,
     llong *secondError);
 int SelectClusterToBeSwapped(TRAININGSET *pTS, CODEBOOK *pCB,
@@ -137,7 +137,7 @@ int useInitial, int monitoring)
   int           i, j, better;
   int           ci=0, ciPrev=0, ciZero=0, ciMax=0, PrevSuccess=0;
   int           CIHistogram[111];
-  llong         currError, newError;
+  double        currError, newError;
   llong         distance[BookSize(pTS)];
   double        c, error;
   int           stop=NO, automatic=((iter==0) ? YES : NO);
@@ -198,6 +198,7 @@ int useInitial, int monitoring)
     error    = CALC_MSE(newError);
 
     /* Found better solution */
+    // printf("newError=%f currError=%f\n",newError,currError);
     if (newError < currError)
       {
       /* Check stopping criterion */
@@ -309,7 +310,7 @@ YESNO  StopCondition(double currError, double newError, int iter)
 /*-------------------------------------------------------------------*/
 
 
-llong GenerateInitialSolution(PARTITIONING *pP, CODEBOOK *pCB,
+double GenerateInitialSolution(PARTITIONING *pP, CODEBOOK *pCB,
 TRAININGSET *pTS, int useInitial)
 {
   if (useInitial == 1)
@@ -567,9 +568,9 @@ int iter, int travellerSearch, int quietLevel, double time)
 /*-------------------------------------------------------------------*/
 
 
-llong ObjectiveFunction(PARTITIONING *pP, CODEBOOK *pCB, TRAININGSET *pTS)
+double ObjectiveFunction(PARTITIONING *pP, CODEBOOK *pCB, TRAININGSET *pTS)
 {
-  llong sum = 0;
+  double sum = 0.0;
   int i, j;
 
   /* sum of squared distances of the data object to their
@@ -581,6 +582,7 @@ llong ObjectiveFunction(PARTITIONING *pP, CODEBOOK *pCB, TRAININGSET *pTS)
            VectorSize(pTS), MAXLLONG, EUCLIDEANSQ) * VectorFreq(pTS, i);
     }
 
+// printf("SUM=%f\n",sum);
   return sum;
 }
 
